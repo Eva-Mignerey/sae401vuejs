@@ -18,7 +18,7 @@ function changeLocale(lang) {
 <template>
   <header class="header">
     <div class="header-bar">
-      <h1>{{ t('menu.users') }}</h1>
+      <h1>{{ t('mensu.user') }}</h1>
       <button class="burger" @click="toggleMenu">☰</button>
     </div>
 
