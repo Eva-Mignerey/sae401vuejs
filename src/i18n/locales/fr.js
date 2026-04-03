@@ -1,10 +1,11 @@
 export default {
   app: {
-    title: 'Mon application',
+    title: 'CO2llecte',
   },
   menu: {
     home: 'Accueil',
     users: 'Utilisateurs',
+    stats: 'Statistiques',
     settings: 'Paramètres',
   },
   auth: {

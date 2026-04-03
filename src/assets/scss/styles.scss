@@ -1,14 +1,16 @@
 // layout
 @import "layout";
 
-// composants
-@import "components";
-
 // pages
 @import "pages/home";
 @import "pages/formulaire";
+@import "pages/connexion";
 
-body {
-  background-color: #F5EFE1;
-  color: #ff1313;
+// composants
+@import "composants/header.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
