@@ -1,7 +1,7 @@
 .body-connexion {
     background-color: $background-color;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     text-align: center;
 
     .logo {
@@ -15,7 +15,63 @@
     }
 }
 
+.mascot-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 2rem;
+}
+
+.speech-bubble {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: end;
+    margin-right: -2rem;
+    align-self: end;
+    background-color: $orange;
+    color: $blanc;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: $texte-basique;
+    font-family: $police;
+    width: 250px;
+    margin-right: 1rem;
+}
+
+.mascot {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: start;
+    margin-right: 2rem;
+    align-self: start;
+    @include mascotte_1;
+    transform: scaleX(-1);
+    margin-left: 1rem;
+}
+
 .btn-vert {
     @include bouton-vert;
     display: inline-block;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding: 2rem 0 0 0;
+    gap: 1rem;
+
+    .input-field {
+        padding: 0.8rem;
+        border-radius: 8px;
+        border: 1px solid $gris;
+        font-size: $texte-basique;
+        font-family: $police;
+        width: 300px;
+    }
 }
