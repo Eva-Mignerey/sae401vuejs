@@ -1,86 +1,181 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+// import api from '../services/api' // On l'activera plus tard pour envoyer au back
 
 const router = useRouter()
 
-// L'étape actuelle (1, 2, 3...)
+// Gestion de l'étape affichée (1 = Inscription, 2 = Questionnaire)
 const currentStep = ref(1)
 
-// Notre "tiroir" à réponses (le fameux Mock)
+// Notre "tiroir" qui va stocker absolument toutes les réponses
 const formData = ref({
-  transport: '',
+  // Étape 1 : Profil
+  prenom: '',
+  nom: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+  cguAccepted: false,
+  
+  // Étape 2 : Habitudes
+  transports: [], // Tableau vide car choix multiples possibles !
   regime: '',
   achats: '',
   chauffage: ''
 })
 
-// Fonctions pour naviguer entre les étapes
-const nextStep = () => {
-  currentStep.value++
+// Validation de l'étape 1 et passage à l'étape 2
+const handleCreateAccount = () => {
+  // Petite vérification de base côté front
+  if (formData.value.password !== formData.value.confirmPassword) {
+    alert("Les mots de passe ne correspondent pas !")
+    return
+  }
+  if (!formData.value.cguAccepted) {
+    alert("Tu dois accepter la politique de confidentialité.")
+    return
+  }
+  
+  // Si tout est bon, on passe à la page des questions
+  currentStep.value = 2
 }
 
-const prevStep = () => {
-  currentStep.value--
-}
-
-// Fonction finale : l'envoi
-const submitForm = () => {
-  // Pour l'instant on fait juste un console.log (Mock)
-  console.log("Données prêtes à être envoyées à Symfony :", formData.value)
+// Validation finale de l'étape 2
+const handleSaveHabits = () => {
+  // Ici, on fera le vrai appel Axios vers l'API de ta collègue
+  console.log("Toutes les données prêtes à être envoyées :", formData.value)
   
-  // Plus tard : await api.post('/api/onboarding', formData.value)
-  
-  // On redirige vers l'accueil une fois terminé
+  // Redirection vers l'application
   router.push({ name: 'home' })
 }
 </script>
 
 <template>
-  <div class="onboarding-container">
-    <h1>Bienvenue, apprenons à te connaître !</h1>
+  <div class="onboarding-page">
     
-    <div v-if="currentStep === 1">
-      <h2>Quels moyens de transport utilises-tu ?</h2>
-      <label>
-        <input type="radio" value="voiture" v-model="formData.transport" /> Voiture
-      </label>
-      <label>
-        <input type="radio" value="transports_en_commun" v-model="formData.transport" /> Transports en commun
-      </label>
-      <label>
-        <input type="radio" value="velo_pied" v-model="formData.transport" /> Vélo / À pied
-      </label>
-      
-      <button @click="nextStep" :disabled="!formData.transport">Suivant</button>
+    <div class="progress-header">
+      <div class="mascot-container">
+        <img src="@/assets/images/mascotte_1.svg" alt="Mascotte" class="mascot-progress" />
+      </div>
+      <div class="stepper">
+        <div class="step" :class="{ active: currentStep >= 1 }">1</div>
+        <div class="line"></div>
+        <div class="step" :class="{ active: currentStep >= 2 }">2</div>
+        <div class="line"></div>
+        <div class="step" :class="{ active: currentStep >= 3 }">3</div>
+      </div>
     </div>
 
-    <div v-if="currentStep === 2">
-      <h2>Quel est ton régime alimentaire ?</h2>
-      <select v-model="formData.regime">
-        <option value="" disabled>Choisis une option</option>
-        <option value="viande_tous_les_jours">Viande tous les repas</option>
-        <option value="equilibre">Équilibré (Viande 3-5 fois/semaine)</option>
-        <option value="vegetarien">Végétarien / Végétalien</option>
-      </select>
-      
-      <button @click="prevStep">Retour</button>
-      <button @click="nextStep" :disabled="!formData.regime">Suivant</button>
+    <div v-if="currentStep === 1" class="step-1-container">
+      <form @submit.prevent="handleCreateAccount" class="register-form">
+        
+        <div class="form-group">
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" v-model="formData.prenom" placeholder="Tape ton prénom ici..." required />
+        </div>
+
+        <div class="form-group">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" v-model="formData.nom" placeholder="Tape ton nom ici..." required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Adresse mail</label>
+          <input type="email" id="email" v-model="formData.email" placeholder="Tape ton adresse mail ici..." required />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" v-model="formData.password" placeholder="Tape ton mot de passe ici..." required />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirmer le mot de passe</label>
+          <input type="password" id="confirmPassword" v-model="formData.confirmPassword" placeholder="Tape ton mot de passe ici..." required />
+        </div>
+
+        <div class="form-checkbox">
+          <input type="checkbox" id="cgu" v-model="formData.cguAccepted" required />
+          <label for="cgu">J'accepte la politique de confidentialité</label>
+        </div>
+
+        <button type="submit" class="btn-submit">Créer mon compte</button>
+      </form>
     </div>
 
-    <div v-if="currentStep === 3">
-      <h2>Tes habitudes à la maison</h2>
+    <div v-if="currentStep === 2" class="step-2-container">
       
-      <p>Chauffage principal :</p>
-      <select v-model="formData.chauffage">
-        <option value="" disabled>Choisis une option</option>
-        <option value="gaz">Gaz / Fioul</option>
-        <option value="electrique">Électrique</option>
-        <option value="renouvelable">Bois / Renouvelable</option>
-      </select>
-      
-      <button @click="prevStep">Retour</button>
-      <button @click="submitForm" :disabled="!formData.chauffage">Enregistrer</button>
+      <div class="welcome-banner">
+        <h2>Bienvenue, <strong>{{ formData.prenom || 'user_name' }}</strong> !</h2>
+        <div class="speech-bubble">
+          <p>Pour bien utiliser l'app, tu dois d'abord renseigner tes habitudes de transports, consommations, etc... À toi de jouer !</p>
+        </div>
+      </div>
+
+      <form @submit.prevent="handleSaveHabits" class="habits-form">
+        
+        <div class="question-block">
+          <h3>Quels moyens de transport utilises-tu ?<br><small>(Tu peux en choisir plusieurs)</small></h3>
+          
+          <label class="custom-checkbox">
+            <input type="checkbox" value="commun" v-model="formData.transports" />
+            <span class="label-text"><strong>Transports en commun</strong> (trains, bus, blablacar)</span>
+          </label>
+          
+          <label class="custom-checkbox">
+            <input type="checkbox" value="motorise" v-model="formData.transports" />
+            <span class="label-text"><strong>Véhicules motorisés</strong> (voitures, motos)</span>
+          </label>
+          
+          <label class="custom-checkbox">
+            <input type="checkbox" value="vert" v-model="formData.transports" />
+            <span class="label-text"><strong>Véhicules verts</strong> (vélos, trottinette, à pieds)</span>
+          </label>
+        </div>
+
+        <div class="question-block">
+          <h3>Quel est ton régime alimentaire ?</h3>
+          
+          <label class="custom-radio">
+            <input type="radio" value="viande_tous_repas" v-model="formData.regime" required />
+            <span class="label-text">Viande presque tous les repas</span>
+          </label>
+          
+          <label class="custom-radio">
+            <input type="radio" value="viande_regulier" v-model="formData.regime" />
+            <span class="label-text"><strong>Viande régulièrement</strong> (viande 4-5 fois/semaine)</span>
+          </label>
+          
+          <label class="custom-radio">
+            <input type="radio" value="viande_peu" v-model="formData.regime" />
+            <span class="label-text"><strong>Peu de viande</strong> (viande 1-2 fois/semaine)</span>
+          </label>
+
+          <label class="custom-radio">
+            <input type="radio" value="vegetarien" v-model="formData.regime" />
+            <span class="label-text"><strong>Végétarien/Vegan</strong></span>
+          </label>
+        </div>
+
+        <div class="question-block">
+          <h3>À quelle fréquence achètes-tu des produits neufs ?<br><small>(vêtement, technologie...)</small></h3>
+          <label><input type="radio" value="tres_rarement" v-model="formData.achats" required /> Très rarement</label><br>
+          <label><input type="radio" value="occasionnellement" v-model="formData.achats" /> Occasionnellement</label><br>
+          <label><input type="radio" value="souvent" v-model="formData.achats" /> Souvent</label><br>
+          <label><input type="radio" value="tres_souvent" v-model="formData.achats" /> Très souvent</label>
+        </div>
+
+        <div class="question-block">
+          <h3>Quel type de chauffage utilises-tu dans ton logement ?</h3>
+          <label><input type="radio" value="renouvelable" v-model="formData.chauffage" required /> Énergies renouvelables / bois</label><br>
+          <label><input type="radio" value="electrique" v-model="formData.chauffage" /> Électrique</label><br>
+          <label><input type="radio" value="gaz" v-model="formData.chauffage" /> Gaz</label><br>
+          <label><input type="radio" value="fioul" v-model="formData.chauffage" /> Fioul</label>
+        </div>
+
+        <button type="submit" class="btn-submit btn-orange">Enregistrer</button>
+      </form>
     </div>
 
   </div>
