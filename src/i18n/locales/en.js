@@ -7,6 +7,8 @@ export default {
     users: 'Users',
     stats: 'Statistics',
     settings: 'Settings',
+    form: 'Form',
+    connexion: 'Login',
   },
   auth: {
     login: 'Login',
@@ -25,7 +27,7 @@ export default {
     password_label: 'Password',
     password_placeholder: 'Type your password here...',
     submit_btn: 'Log in!',
-    no_account: "Don't have an account yet?",
+    no_account: "Don't have an account yet ?",
     create_account: 'Then create one!'
   }
 }

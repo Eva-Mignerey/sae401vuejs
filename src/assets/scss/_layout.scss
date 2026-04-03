@@ -6,22 +6,39 @@ $background-color: #F5EFE1;
 $text-color: #472E0B;
 $gris: #94A3B8;
 $blanc: #FFFFFF;
+$remplissage: rgba(#F2B55B, 0.25);
 
 // texte
 $police: 'inter', sans-serif;
-$titre: 2.2rem;
-$texte-basique: 1.2rem;
-$bouton: 1.5rem;
+$titre: 1.9rem;
+$texte-basique: 1.1rem;
+$texte-petit: 0.9rem;
+$bouton: 1.4rem;
 
 // images
 @mixin logo {
-    width: 400px;
+    width: 250px;
     height: auto;
     display: block;
     margin: 0 auto;
 }
 
+// mascottes
 @mixin mascotte_1 {
+    width: 175px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+@mixin mascotte_heureuse {
+    width: 175px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+@mixin mascotte_assise {
     width: 175px;
     height: auto;
     display: block;
@@ -36,6 +53,24 @@ $bouton: 1.5rem;
     border-radius: 8px;
     border: none;
     font-size: $bouton;
+    font-family: $police;
+    font-weight: bold;
+    transition: 0.2s;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        background-color: darken($vert, 15%);
+        text-decoration: underline;
+    }
+}
+
+@mixin bouton-vert-petit {
+    background-color: $vert;
+    color: $blanc;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: none;
+    font-size: $texte-petit;
     font-family: $police;
     font-weight: bold;
     transition: 0.2s;

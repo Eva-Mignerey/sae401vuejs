@@ -28,11 +28,9 @@ const handleLogin = async () => {
 <template>
   <div class="body-connexion">
 
-    <!-- LOGO -->
     <img src="@/assets/images/logo_collecte.svg" alt="Logo" class="logo" />
     <h1 class="titre-logo" v-html="t('loginPage.welcome_title')"></h1>
 
-    <!-- MASCOT + BULLE -->
     <div class="mascot-section">
       <div class="speech-bubble">
         <p v-html="t('loginPage.speech_bubble')"></p>
@@ -45,37 +43,34 @@ const handleLogin = async () => {
       />
     </div>
 
-    <!-- FORMULAIRE -->
     <div class="login-container">
-      <form @submit.prevent="handleLogin">
-
+    <div class="container-orange">
+        <form @submit.prevent="handleLogin">
         <input 
-          type="email" 
-          v-model="email" 
-          :placeholder="t('loginPage.email_placeholder')" 
-          class="input-field"
-          required 
+            type="email" 
+            v-model="email" 
+            :placeholder="t('loginPage.email_placeholder')" 
+            class="input-field"
+            required 
         />
-        <br>
         <input 
-          type="password" 
-          v-model="password" 
-          :placeholder="t('loginPage.password_placeholder')" 
-          class="input-field"
-          required 
+            type="password" 
+            v-model="password" 
+            :placeholder="t('loginPage.password_placeholder')" 
+            class="input-field"
+            required 
         />
-        <br>
         <button type="submit" class="btn-vert">
-          {{ t('loginPage.submit_btn') }}
+            {{ t('loginPage.submit_btn') }}
         </button>
-      </form>
-      <br>
-      <div class="signup-link">
-        <p>{{ t('loginPage.no_account') }}</p>
-        <router-link :to="{ name: 'formulaire' }">
-          {{ t('loginPage.create_account') }}
+        </form>
+        <div class="signup-link">
+        <p class="texte-bas">{{ t('loginPage.no_account') }}</p>
+        <router-link :to="{ name: 'formulaire' }" class="texte-bas">
+            {{ t('loginPage.create_account') }}
         </router-link>
-      </div>
+        </div>
+    </div>
     </div>
 
   </div>

@@ -7,6 +7,8 @@ export default {
     users: 'Utilisateurs',
     stats: 'Statistiques',
     settings: 'Paramètres',
+    form: 'Formulaire',
+    connexion: 'Connexion',
   },
   auth: {
     login: 'Connexion',
