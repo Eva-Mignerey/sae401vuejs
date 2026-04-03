@@ -30,18 +30,53 @@ const handleLogin = async () => {
 </script>
 
 <template>
-  <div class="login-container">
-    <h1>Connexion</h1>
-    <form @submit.prevent="handleLogin">
-      <div>
-        <label>Email</label>
-        <input type="email" v-model="email" required />
+  <div class="login-page">
+    
+    <header class="login-header">
+      <img src="@/assets/images/logo_collecte.svg" alt="Logo CO2llecte" class="logo" />
+      <h1>Bienvenue sur<br>CO<sub>2</sub>llecte !</h1>
+    </header>
+
+    <div class="mascot-section">
+      <div class="speech-bubble">
+        <p>Avant toute chose,<br>connectes-toi ou<br>créé un compte !</p>
       </div>
-      <div>
-        <label>Mot de passe</label>
-        <input type="password" v-model="password" required />
+      <img src="@/assets/images/mascotte_1.svg" alt="Mascotte Feuille" class="mascot" />
+    </div>
+
+    <div class="login-card">
+      <form @submit.prevent="handleLogin">
+        
+        <div class="form-group">
+          <label for="email">Identifiant</label>
+          <input 
+            type="email" 
+            id="email" 
+            v-model="email" 
+            placeholder="Tape ton identifiant ici..." 
+            required 
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input 
+            type="password" 
+            id="password" 
+            v-model="password" 
+            placeholder="Tape ton mot de passe ici..." 
+            required 
+          />
+        </div>
+
+        <button type="submit" class="btn-submit">Connecte-toi !</button>
+      </form>
+
+      <div class="signup-link">
+        <p>Tu n'as pas encore de compte ?</p>
+        <router-link :to="{ name: 'formulaire' }">Alors créé en un !</router-link>
       </div>
-      <button type="submit">Connecte-toi !</button>
-    </form>
+    </div>
+
   </div>
 </template>

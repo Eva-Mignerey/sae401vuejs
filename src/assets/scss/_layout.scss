@@ -9,3 +9,56 @@ $blanc: #FFFFFF;
 // texte
 $police: 'inter', sans-serif;
 $titre: 2.2rem;
+$texte-basique: 1.2rem;
+$bouton: 1.5rem;
+
+// images
+@mixin logo {
+    width: 400px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+@mixin mascotte_1 {
+    width: 175px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+//boutons
+@mixin bouton-vert {
+    background-color: $vert;
+    color: $blanc;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: none;
+    font-size: $bouton;
+    font-family: $police;
+    font-weight: bold;
+    transition: 0.2s;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        background-color: darken($vert, 15%);
+        text-decoration: underline;
+    }
+}
+
+@mixin bouton-orange {
+    background-color: $orange;
+    color: $blanc;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-size: $bouton;
+    font-family: $police;
+    font-weight: bold;
+    transition: 0.2s;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        background-color: darken($orange, 15%);
+        text-decoration: underline;
+    }
+}
