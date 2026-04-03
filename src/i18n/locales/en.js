@@ -5,6 +5,7 @@ export default {
   menu: {
     home: 'Home',
     users: 'Users',
+    stats: 'Statistics',
     settings: 'Settings',
   },
   auth: {
