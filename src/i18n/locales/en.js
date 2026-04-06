@@ -16,7 +16,7 @@ export default {
   form: {
     required: 'This field is required',
   },
-  // NOUVEAU : Bloc dédié à la page de connexion (version anglaise)
+
   loginPage: {
     welcome_title: 'Welcome to<br>CO<sub>2</sub>llect!',
     speech_bubble: 'First of all,<br>log in or<br>create an account!',
