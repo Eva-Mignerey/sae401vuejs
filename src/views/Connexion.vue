@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import api from '../services/api'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -10,68 +9,62 @@ const router = useRouter()
 const email = ref('')
 const password = ref('')
 
-const handleLogin = async () => {
-  try {
-    const response = await api.post('/login', {
-      email: email.value,
-      password: password.value
-    })
-    localStorage.setItem('token', response.data.token)
+const handleLogin = () => {
+  if (email.value && password.value) {
+    localStorage.setItem('token', 'faux-token-demo-8h')
     router.push({ name: 'home' })
-  } catch (error) {
-    console.error('Erreur lors de la connexion:', error)
-    alert('Identifiants incorrects ou problème serveur !')
+  } else {
+    alert('Remplis les champs !')
   }
 }
 </script>
 
 <template>
-  <div class="body-connexion">
-
-    <img src="@/assets/images/logo_collecte.svg" alt="Logo" class="logo" />
-    <h1 class="titre-logo" v-html="t('loginPage.welcome_title')"></h1>
+  <div class="login-page">
+    <header class="login-header">
+      <img src="@/assets/images/logo_collecte.svg" alt="Logo CO2llect" class="logo" />
+      <h1 v-html="t('loginPage.welcome_title')"></h1>
+    </header>
 
     <div class="mascot-section">
       <div class="speech-bubble">
         <p v-html="t('loginPage.speech_bubble')"></p>
       </div>
-
-      <img 
-        src="@/assets/images/mascotte_1.svg" 
-        alt="Mascotte" 
-        class="mascot" 
-      />
+      <img src="@/assets/images/mascotte_1.svg" alt="Mascotte" class="mascot" />
     </div>
 
-    <div class="login-container">
-    <div class="container-orange">
-        <form @submit.prevent="handleLogin">
-        <input 
+    <div class="login-card">
+      <form @submit.prevent="handleLogin">
+        <div class="form-group">
+          <label for="email">{{ t('loginPage.email_label') }}</label>
+          <input 
             type="email" 
+            id="email" 
             v-model="email" 
             :placeholder="t('loginPage.email_placeholder')" 
-            class="input-field"
             required 
-        />
-        <input 
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">{{ t('loginPage.password_label') }}</label>
+          <input 
             type="password" 
+            id="password" 
             v-model="password" 
             :placeholder="t('loginPage.password_placeholder')" 
-            class="input-field"
             required 
-        />
-        <button type="submit" class="btn-vert">
-            {{ t('loginPage.submit_btn') }}
-        </button>
-        </form>
-        <div class="signup-link">
-        <p class="texte-bas">{{ t('loginPage.no_account') }}</p>
-        <router-link :to="{ name: 'formulaire' }" class="texte-bas">
-            {{ t('loginPage.create_account') }}
-        </router-link>
+          />
         </div>
-    </div>
-    </div>
 
+        <button type="submit" class="btn-submit">{{ t('loginPage.submit_btn') }}</button>
+      </form>
+
+      <div class="signup-link">
+        <p>{{ t('loginPage.no_account') }}</p>
+        <router-link :to="{ name: 'formulaire' }">{{ t('loginPage.create_account') }}</router-link>
+      </div>
+    </div>
   </div>
 </template>
+

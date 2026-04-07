@@ -1,7 +1,89 @@
-<script></script>
+<script setup>
+import { ref, computed } from 'vue'
+
+const userName = ref('David')
+const activePeriod = ref('mois')
+
+const mockData = {
+  semaine: [12, 15, 9, 20, 14, 18, 10],
+  mois: [15, 14, 18, 22, 20, 15, 10, 12, 16, 25, 22, 18, 14, 12],
+  annee: [450, 420, 380, 410, 390, 350, 320, 310, 340, 400, 430, 460]
+}
+
+const currentData = computed(() => mockData[activePeriod.value])
+
+const maxVal = computed(() => Math.max(...currentData.value) * 1.2)
+
+const points = computed(() => {
+  return currentData.value.map((val, index) => {
+    const x = (index / (currentData.value.length - 1)) * 100
+    const y = 100 - ((val / maxVal.value) * 100)
+    return { x, y, val }
+  })
+})
+
+const polylinePoints = computed(() => {
+  return points.value.map(p => `${p.x},${p.y}`).join(' ')
+})
+
+const periodLabel = computed(() => {
+  if (activePeriod.value === 'semaine') return 'de la semaine'
+  if (activePeriod.value === 'mois') return 'du mois'
+  return "de l'année"
+})
+
+const totalCO2 = computed(() => currentData.value.reduce((a, b) => a + b, 0))
+</script>
 
 <template>
-    <body class="body-statistiques">
-        
-    </body>
+  <div class="stats-page">
+    <header class="top-bar">
+      <button class="burger-icon">☰</button>
+      <span class="username">{{ userName }}</span>
+    </header>
+
+    <main class="main-content">
+      <h2 class="page-title">Ton bilan {{ periodLabel }}</h2>
+
+      <div class="stats-container">
+        <div class="period-selector">
+          <button :class="{ active: activePeriod === 'semaine' }" @click="activePeriod = 'semaine'">Semaine</button>
+          <button :class="{ active: activePeriod === 'mois' }" @click="activePeriod = 'mois'">Mois</button>
+          <button :class="{ active: activePeriod === 'annee' }" @click="activePeriod = 'annee'">Année</button>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-subtitle">Graphique {{ activePeriod }}</p>
+          
+          <div class="svg-container">
+            <svg viewBox="-5 -5 110 110" class="line-chart">
+              <polyline fill="none" stroke="black" stroke-width="1" points="0,0 0,100 100,100" />
+              <polyline fill="none" stroke="red" stroke-width="1.5" :points="polylinePoints" />
+              <circle v-for="(pt, i) in points" :key="i" :cx="pt.x" :cy="pt.y" r="2" fill="blue" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="extra-stats-grid">
+          <div class="stat-box">
+            <h3>Total émis</h3>
+            <p class="stat-value">{{ totalCO2 }} <span>kg CO₂</span></p>
+          </div>
+          <div class="stat-box">
+            <h3>Moyenne</h3>
+            <p class="stat-value">{{ Math.round(totalCO2 / currentData.length) }} <span>kg/j</span></p>
+          </div>
+          <div class="stat-box full-width">
+            <h3>Équivalent Voiture</h3>
+            <p class="stat-value">{{ Math.round(totalCO2 * 4.5) }} <span>km parcourus 🚗</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mascot-container">
+        <img src="@/assets/images/mascotte_1.svg" alt="Mascotte" class="mascot" />
+      </div>
+    </main>
+  </div>
 </template>
+
