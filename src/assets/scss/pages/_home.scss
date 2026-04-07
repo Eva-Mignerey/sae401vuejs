@@ -99,8 +99,17 @@
   display: flex;
   flex-direction: column;
 
-  ...
+  .score-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: $texte-basique;
+    margin-bottom: -5px;
+  }
 
-(15 lignes restantes)
+  .score-value {
+    font-size: 48px;
+    font-weight: 900;
+    color: $texte-basique;
+    line-height: 1;
+  }
 }
-
