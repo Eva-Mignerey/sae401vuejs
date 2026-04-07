@@ -1,44 +1,60 @@
-.header {
-    background: $vert;
-    color: $blanc;
-    padding: 1rem;
-    position: relative;
-}
+.main-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: $blanc;
 
-.header-bar {
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-}
 
-.burger {
-    background: none;
-    border: none;
-    color: $blanc;
-    font-size: 3rem;
-    cursor: pointer;
-}
+    padding: 15px 10px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    font-family: $police;
 
-.mobile-menu {
-    display: none;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
-
-    a {
-        color: $blanc;
+    .nav-item {
         text-decoration: none;
+        color: $text-color;
+        font-weight: bold;
+        font-size: $texte-petit;
     }
 
-    button {
-        padding: 0.4rem 0.8rem;
-        border: none;
-        border-radius: 8px;
+    .nav-item.active {
+    color: $orange;
+    }
+
+    .lang-switch {
+        display: flex;
+        gap: 5px;
+
+        button {
+        border: 1px solid $orange;
+        background: $blanc;
+        color: $orange;
+        border-radius: 5px;
+        padding: 5px 10px;
         cursor: pointer;
-    }
-}
+        font-weight: bold;
+        font-family: $police;
 
-.mobile-menu.open {
-    display: flex;
+        &:hover {
+            background: $orange;
+            color: $blanc;
+        }
+        }
+    }
+
+    .logout-btn {
+        @include bouton-orange;
+        font-size: $texte-petit;
+        padding: 5px 10px;
+    }
+
+    @media (min-width: 768px) {
+        bottom: auto;
+        top: 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
 }
