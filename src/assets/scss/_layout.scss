@@ -2,6 +2,7 @@
 // couleurs
 $vert: #84C04C;
 $orange: #F28435;
+$rouge: #f23535;
 $background-color: #F5EFE1;
 $text-color: #472E0B;
 $gris: #94A3B8;
@@ -26,7 +27,7 @@ $bouton: 1.4rem;
 
 // mascottes
 @mixin mascotte_1 {
-    width: 175px;
+    width: 90px;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -96,6 +97,65 @@ $bouton: 1.4rem;
     cursor: pointer;
     &:hover {
         background-color: darken($orange, 15%);
+        text-decoration: underline;
+    }
+}
+
+@mixin bouton-orange-petit {
+    background-color: $orange;
+    color: $blanc;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: none;
+    font-size: $texte-petit;
+    font-family: $police;
+    font-weight: bold;
+    transition: 0.2s;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        background-color: darken($orange, 15%);
+        text-decoration: underline;
+    }
+}
+
+@mixin bouton-orange-select {
+    background-color: $orange;
+    color: $blanc;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-size: $texte-petit;
+    font-family: $police;
+    font-weight: bold;
+    transition: 0.2s;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        background-color: darken($orange, 15%);
+        text-decoration: underline;
+    }
+    &:active {
+        transform: scale(0.97);
+    }
+    &.active {
+        background-color: $vert;
+    }
+}
+
+@mixin bouton-deconnection {
+    background-color: $rouge;
+    color: $blanc;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: none;
+    font-size: $texte-petit;
+    font-family: $police;
+    font-weight: bold;
+    transition: 0.2s;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        background-color: darken($rouge, 15%);
         text-decoration: underline;
     }
 }

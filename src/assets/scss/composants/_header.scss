@@ -47,9 +47,8 @@
     }
 
     .logout-btn {
-        @include bouton-orange;
-        font-size: $texte-petit;
-        padding: 5px 10px;
+        @include bouton-deconnection;
+        border: none;
     }
 
     @media (min-width: 768px) {
