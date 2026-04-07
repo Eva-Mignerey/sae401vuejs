@@ -1,0 +1,115 @@
+.home-page {
+  background-color: $background-color;
+  min-height: 100vh;
+  font-family: $police;
+  padding: 80px 0 80px 0;
+}
+
+.top-bar {
+  background-color: $vert;
+  color: $blanc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  font-size: $texte-basique;
+  font-weight: bold;
+}
+
+.burger-icon {
+  background: none;
+  border: none;
+  color: $blanc;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.main-content {
+  padding: 20px;
+
+  h2 {
+    color: $text-color;
+    font-size: $texte-petit;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+}
+
+.btn-survey {
+  @include bouton-orange;
+  padding: 15px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.results-card {
+  background-color: $blanc;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.grid-categories {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.category-box {
+  background-color: $background-color;
+  border-radius: 10px;
+  padding: 15px 10px;
+  text-align: center;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h3 {
+    font-size: 12px;
+    color: $texte-basique;
+    margin: 0 0 5px 0;
+  }
+}
+
+.data-value {
+  margin: 0;
+  font-weight: bold;
+  font-size: 14px;
+  color: $vert;
+}
+
+.score-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 20px;
+}
+
+.mascot-img {
+  width: 80px;
+}
+
+.score-box {
+  background-color: $background-color;
+  border-radius: 10px;
+  padding: 15px 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  .score-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: $texte-basique;
+    margin-bottom: -5px;
+  }
+
+  .score-value {
+    font-size: 48px;
+    font-weight: 900;
+    color: $texte-basique;
+    line-height: 1;
+  }
+}

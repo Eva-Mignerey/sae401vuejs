@@ -2,6 +2,7 @@ export default {
     app: {
       title: 'CO2llect',
     },
+
     menu: {
       home: 'Accueil',
       users: 'Utilisateurs',
@@ -10,14 +11,17 @@ export default {
       form: 'Formulaire',
       connexion: 'Connexion',
     },
+
     auth: {
       login: 'Connexion',
       logout: 'Déconnexion',
       welcome: 'Bonjour {name}',
     },
+    
     form: {
       required: 'Ce champ est obligatoire',
     },
+
     loginPage: {
     welcome_title: 'Bienvenue sur<br>CO<sub>2</sub>llect !',
     speech_bubble: 'Avant tout,<br>connecte-toi ou<br>crée un compte !',
@@ -29,4 +33,18 @@ export default {
     no_account: "Pas encore de compte ?",
     create_account: 'Alors crée-en un !'
     },
+
+    results: {
+    "transports": "Transports",
+    "alimentation": "Alimentation",
+    "consommation": "Consommation",
+    "logement": "Logement"
+    },
+
+    home: {
+    daily: "Ton bilan quotidien",
+    do_quiz: "Faire le questionnaire",
+    yesterday: "Résultats d'hier",
+    score: "Score"
+    }
 }

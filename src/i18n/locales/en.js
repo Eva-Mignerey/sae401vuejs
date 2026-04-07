@@ -2,6 +2,7 @@ export default {
     app: {
         title: 'CO2llect',
     },
+    
     menu: {
         home: 'Home',
         users: 'Users',
@@ -10,11 +11,13 @@ export default {
         form: 'Form',
         connexion: 'Login',
     },
+
     auth: {
         login: 'Login',
         logout: 'Logout',
         welcome: 'Hello {name}',
     },
+
     form: {
         required: 'This field is required',
     },
@@ -30,4 +33,19 @@ export default {
         no_account: "Don't have an account yet?",
         create_account: 'Then create one!'
     },
+
+    results: 
+    {
+    "transports": "Transport",
+    "alimentation": "Food",
+    "consommation": "Consumption",
+    "logement": "Housing"
+    },
+
+    home: {
+    daily: "Your daily report",
+    do_quiz: "Take the quiz",
+    yesterday: "Yesterday results",
+    score: "Score"
+    }
 }
