@@ -19,15 +19,25 @@ function logout() {
 
 <template>
     <nav class="main-nav">
-        <router-link to="/home" class="nav-item">{{ t('menu.home') }}</router-link>
-        <router-link to="/quiz" class="nav-item">Quiz</router-link>
-        <router-link to="/statistiques" class="nav-item">{{ t('menu.stats') }}</router-link>
-        
-        <div class="lang-switch">
+        <div class="pictogrammes">
+        <router-link to="/home" class="nav-item">
+            <img src="@/assets/images/accueil.svg" alt="maison" class="picto">
+        </router-link>
+        <router-link to="/quiz" class="nav-item">
+            <img src="@/assets/images/formulaire.svg" alt="maison" class="picto">
+        </router-link>
+        <router-link to="/statistiques" class="nav-item">
+            <img src="@/assets/images/statistiques.svg" alt="maison" class="picto">
+        </router-link>
+        </div>
+
+        <div class="lang-switch desktop-only">
         <button @click="changeLocale('fr')">FR</button>
         <button @click="changeLocale('en')">EN</button>
         </div>
 
-        <button @click="logout" class="logout-btn">{{ t('auth.logout') }}</button>
+        <button @click="logout" class="logout-btn desktop-only">
+        {{ t('auth.logout') }}
+        </button>
     </nav>
 </template>

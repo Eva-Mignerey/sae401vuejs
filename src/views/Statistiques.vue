@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
+import TopBar from '@/components/TopBar.vue'
 
 const userName = ref('David')
 const activePeriod = ref('mois')
@@ -36,9 +37,7 @@ const totalCO2 = computed(() => currentData.value.reduce((a, b) => a + b, 0))
 </script>
 
 <template>
-    <header class="top-bar">
-      <span class="username">{{ userName }}</span>
-    </header>
+    <TopBar :userName="userName" />
   <div class="stats-page">
 
     <main class="main-content">
