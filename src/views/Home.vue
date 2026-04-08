@@ -16,6 +16,9 @@ const results = ref({
 </script>
 
 <template>
+  <header class="top-bar">
+      <span class="username">{{ userName }}</span>
+    </header>
   <div class="home-page">
 
     <main class="main-content">
@@ -26,13 +29,12 @@ const results = ref({
         <router-link 
           to="/quiz" 
           class="btn-survey" 
-          style="display: block; text-align: center; text-decoration: none; box-sizing: border-box;"
+          style="display: block; font-size: 16px; text-align: center; text-decoration: none; box-sizing: border-box;"
         >
           {{ t('home.do_quiz') }}
         </router-link>
       </section>
 
-      <!-- Résultats -->
       <section class="yesterday-results">
         <h2>{{ t('home.yesterday') }}</h2>
         

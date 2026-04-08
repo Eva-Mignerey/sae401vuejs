@@ -48,11 +48,10 @@ const toggleAppareil = (appareil) => {
 </script>
 
 <template>
-  <div class="quiz-page">
-    <header class="top-bar">
-      <button class="burger-icon">☰</button>
+  <header class="top-bar">
       <span class="username">{{ userName }}</span>
     </header>
+  <div class="quiz-page">
 
     <main class="main-content">
       <div v-if="currentStep === 1" class="quiz-card">
