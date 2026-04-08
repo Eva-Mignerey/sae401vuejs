@@ -1,3 +1,39 @@
+@mixin choice-box($min-height: 72px, $img-width: 40px, $img-max-height: 40px) {
+  display: flex;
+  align-items: center;
+  background-color: $blanc;
+  border: 1px solid $orange;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  box-sizing: border-box;
+  min-height: $min-height;
+
+  input {
+    margin-right: 15px;
+    width: 18px;
+    height: 18px;
+    accent-color: $orange;
+    flex-shrink: 0;
+  }
+
+  img {
+    display: block;
+    width: $img-width;
+    max-height: $img-max-height;
+    height: auto;
+    object-fit: contain;
+    margin-right: 15px;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  &:has(input:checked) {
+    background-color: lighten($orange, 35%);
+  }
+}
+
 .onboarding-page {
   position: relative;
   font-family: $police;
@@ -18,13 +54,8 @@
       font-size: $texte-petit;
       opacity: 0.6;
 
-      &:hover {
-        transform: scale(0.98);
-      }
-
-      &:active {
-        transform: scale(0.95);
-      }
+      &:hover { transform: scale(0.98); }
+      &:active { transform: scale(0.95); }
 
       &.active {
         opacity: 1;
@@ -38,12 +69,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 30px;
+    margin: 15px 60px 30px 0;
     padding-top: 20px;
-  }
-
-  .mascot-container {
-    margin-right: 15px;
   }
 
   .mascot-progress {
@@ -58,7 +85,7 @@
       width: 35px;
       height: 35px;
       border-radius: 50%;
-      background-color: #E0E0E0;
+      background-color: grey;
       color: $blanc;
       display: flex;
       align-items: center;
@@ -74,13 +101,13 @@
     .line {
       width: 30px;
       height: 2px;
-      background-color: #E0E0E0;
+      background-color: grey;
     }
   }
 
   .step-1-container {
     .register-form {
-      background-color: transparent;
+      background-color: lighten($orange, 35%);
       border: 1px solid $orange;
       border-radius: 15px;
       padding: 25px 20px;
@@ -197,47 +224,40 @@
         color: #666;
       }
     }
-
-    label {
-      display: flex;
-      align-items: center;
-      border: 1px solid $orange;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 10px;
-      cursor: pointer;
-
-      &:has(input:checked) {
-        background-color: lighten($orange, 35%);
-      }
-    }
   }
 
-  .custom-checkbox,
-  .custom-radio {
-    display: flex;
+    .custom-checkbox {
+    @include choice-box;
     align-items: center;
-    background-color: $blanc;
-    border: 1px solid $orange;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    box-sizing: border-box;
-
-    input {
-      margin-right: 15px;
-      width: 18px;
-      height: 18px;
-      accent-color: $orange;
     }
 
-    &:has(input:checked) {
-      background-color: lighten($orange, 35%);
+    .custom-checkbox input {
+    align-self: center;
     }
+
+    .custom-checkbox .label-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    }
+
+  .custom-radio {
+    @include choice-box;
   }
+
+    .custom-radio .label-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    }
 
   .label-text {
     font-size: $texte-basique;
+    display: flex;
+    align-items: center;
   }
 }
