@@ -2,10 +2,13 @@
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import TopBar from '@/components/TopBar.vue'
+import CarbonChart from '../components/Graphic.vue'
 
 const { t } = useI18n()
 const userName = ref('David')
 const activePeriod = ref('mois')
+
+
 
 const mockData = {
   semaine: [12, 15, 9, 20, 14, 18, 10],
@@ -36,6 +39,8 @@ const periodLabel = computed(() => {
 })
 
 const totalCO2 = computed(() => currentData.value.reduce((a, b) => a + b, 0))
+
+
 </script>
 
 <template>
@@ -43,26 +48,12 @@ const totalCO2 = computed(() => currentData.value.reduce((a, b) => a + b, 0))
   <div class="stats-page">
 
     <main class="main-content">
-      <h2 class="page-title">{{ t('stats.title', { period: periodLabel }) }}</h2>
+      <h2 class="page-title">Ton bilan {{ period }}</h2>
 
       <div class="stats-container">
-        <div class="period-selector">
-          <button :class="{ active: activePeriod === 'semaine' }" @click="activePeriod = 'semaine'">{{ t('stats.week') }}</button>
-          <button :class="{ active: activePeriod === 'mois' }" @click="activePeriod = 'mois'">{{ t('stats.month') }}</button>
-          <button :class="{ active: activePeriod === 'annee' }" @click="activePeriod = 'annee'">{{ t('stats.year') }}</button>
-        </div>
-
-        <div class="chart-card">
-          <p class="chart-subtitle">{{ t('stats.chart_subtitle', { period: t(`stats.period_${activePeriod}`) }) }}</p>
-          
-          <div class="svg-container">
-            <svg viewBox="-5 -5 110 110" class="line-chart">
-              <polyline fill="none" stroke="black" stroke-width="1" points="0,0 0,100 100,100" />
-              <polyline fill="none" stroke="red" stroke-width="1.5" :points="polylinePoints" />
-              <circle v-for="(pt, i) in points" :key="i" :cx="pt.x" :cy="pt.y" r="2" fill="blue" />
-            </svg>
-          </div>
-        </div>
+        <div class="card shadow">
+        <CarbonChart />
+      </div>
 
         <div class="extra-stats-grid">
           <div class="stat-box">
