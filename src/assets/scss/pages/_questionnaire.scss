@@ -5,25 +5,6 @@
     padding: 100px 0 80px 0;
 }
 
-.top-bar {
-    background-color: $vert;
-    color: $blanc;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    font-size: $texte-basique;
-    font-weight: bold;
-}
-
-.burger-icon {
-    background: none;
-    border: none;
-    color: $blanc;
-    font-size: 24px;
-    cursor: pointer;
-}
-
 .main-content {
     padding: 20px;
 }
@@ -77,7 +58,6 @@ h2 {
 
     input {
         margin-right: 8px;
-        accent-color: $orange;
     }
 }
 

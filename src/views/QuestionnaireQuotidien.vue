@@ -48,6 +48,9 @@ const toggleAppareil = (appareil) => {
 </script>
 
 <template>
+  <header class="top-bar">
+      <span class="username">{{ userName }}</span>
+    </header>
   <div class="quiz-page">
 
     <main class="main-content">

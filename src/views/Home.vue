@@ -16,6 +16,9 @@ const results = ref({
 </script>
 
 <template>
+  <header class="top-bar">
+      <span class="username">{{ userName }}</span>
+    </header>
   <div class="home-page">
 
     <main class="main-content">

@@ -162,22 +162,14 @@
   label {
     display: flex;
     align-items: center;
-    background-color: $blanc;
     border: 1px solid $orange;
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 10px;
     cursor: pointer;
 
-    input {
-      margin-right: 15px;
-      width: 18px;
-      height: 18px;
-      accent-color: $orange;
-    }
-
     &:has(input:checked) {
-      border: 2px solid $vert; // cohérent avec ton thème écolo
+      background-color: lighten($orange, 35%);
     }
   }
 }
@@ -201,7 +193,7 @@
   }
 
   &:has(input:checked) {
-    border: 2px solid $vert;
+    background-color: lighten($orange, 35%);
   }
 }
 

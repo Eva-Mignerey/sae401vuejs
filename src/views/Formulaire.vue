@@ -38,6 +38,9 @@ const handleSaveHabits = () => {
 </script>
 
 <template>
+  <header class="top-bar">
+      <span class="username">{{ userName }}</span>
+    </header>
   <div class="onboarding-page">
     
     <div class="progress-header">
