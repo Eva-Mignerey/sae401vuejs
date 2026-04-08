@@ -25,7 +25,7 @@ export default {
     loginPage: {
     welcome_title: 'Bienvenue sur<br>CO<sub>2</sub>llect !',
     speech_bubble: 'Avant tout,<br>connecte-toi ou<br>crée un compte !',
-    email_label: 'Nom d’utilisateur',
+    email_label: 'Adresse mail',
     email_placeholder: 'Tape ton nom ici...',
     password_label: 'Mot de passe',
     password_placeholder: 'Tape ton mot de passe...',

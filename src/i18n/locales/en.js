@@ -25,7 +25,7 @@ export default {
     loginPage: {
         welcome_title: 'Welcome to<br>CO<sub>2</sub>llect!',
         speech_bubble: 'First of all,<br>log in or<br>create an account!',
-        email_label: 'Username',
+        email_label: 'Email address',
         email_placeholder: 'Type your username here...',
         password_label: 'Password',
         password_placeholder: 'Type your password here...',
