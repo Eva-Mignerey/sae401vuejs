@@ -33,6 +33,10 @@ const handleCreateAccount = () => {
 }
 
 const handleSaveHabits = () => {
+  if (formData.value.transports.length === 0 || !formData.value.regime || !formData.value.achats || !formData.value.chauffage) {
+    alert("Veuillez sélectionner au moins une option pour chaque question.")
+    return
+  }
   localStorage.setItem('token', 'faux-token-demo-8h')
   router.push({ name: 'home' })
 }
@@ -127,39 +131,63 @@ const handleSaveHabits = () => {
             
             <label class="custom-radio">
                 <input type="radio" value="viande_tous_repas" v-model="formData.regime" required />
+                <img src="@/assets/images/viande.svg" alt="Viande" style="width: 45px; margin-right: 15px;" />
                 <span class="label-text">Viande presque tous les repas</span>
             </label>
             
             <label class="custom-radio">
                 <input type="radio" value="viande_regulier" v-model="formData.regime" />
+                <img src="@/assets/images/viande_2.svg" alt="Viande régulièrement" style="width: 45px; margin-right: 15px;" />
                 <span class="label-text"><strong>Viande régulièrement</strong> (viande 4-5 fois/semaine)</span>
             </label>
             
             <label class="custom-radio">
                 <input type="radio" value="viande_peu" v-model="formData.regime" />
+                <img src="@/assets/images/viande_3.svg" alt="Peu de viande" style="width: 45px; margin-right: 15px;" />
                 <span class="label-text"><strong>Peu de viande</strong> (viande 1-2 fois/semaine)</span>
             </label>
 
             <label class="custom-radio">
                 <input type="radio" value="vegetarien" v-model="formData.regime" />
+                <img src="@/assets/images/viande_4.svg" alt="Végétarien" style="width: 45px; margin-right: 15px;" />
                 <span class="label-text"><strong>Végétarien/Vegan</strong></span>
             </label>
             </div>
 
             <div class="question-block">
             <h3>À quelle fréquence achètes-tu des produits neufs ?<br><small>(vêtement, technologie...)</small></h3>
-            <label><input type="radio" value="tres_rarement" v-model="formData.achats" required /> Très rarement</label><br>
-            <label><input type="radio" value="occasionnellement" v-model="formData.achats" /> Occasionnellement</label><br>
-            <label><input type="radio" value="souvent" v-model="formData.achats" /> Souvent</label><br>
-            <label><input type="radio" value="tres_souvent" v-model="formData.achats" /> Très souvent</label>
+            <label class="custom-radio"><input type="radio" value="tres_rarement" v-model="formData.achats" required /> <span class="label-text">Très rarement</span></label>
+            <label class="custom-radio"><input type="radio" value="occasionnellement" v-model="formData.achats" /> <span class="label-text">Occasionnellement</span></label>
+            <label class="custom-radio"><input type="radio" value="souvent" v-model="formData.achats" /> <span class="label-text">Souvent</span></label>
+            <label class="custom-radio"><input type="radio" value="tres_souvent" v-model="formData.achats" /> <span class="label-text">Très souvent</span></label>
             </div>
 
             <div class="question-block">
             <h3>Quel type de chauffage utilises-tu dans ton logement ?</h3>
-            <label><input type="radio" value="renouvelable" v-model="formData.chauffage" required /> Énergies renouvelables / bois</label><br>
-            <label><input type="radio" value="electrique" v-model="formData.chauffage" /> Électrique</label><br>
-            <label><input type="radio" value="gaz" v-model="formData.chauffage" /> Gaz</label><br>
-            <label><input type="radio" value="fioul" v-model="formData.chauffage" /> Fioul</label>
+            
+            <label class="custom-radio">
+                <input type="radio" value="renouvelable" v-model="formData.chauffage" required />
+                <img src="@/assets/images/cheminee.svg" alt="Cheminée" style="width: 45px; margin-right: 15px;" />
+                <span class="label-text">Énergies renouvelables / bois</span>
+            </label>
+            
+            <label class="custom-radio">
+                <input type="radio" value="electrique" v-model="formData.chauffage" />
+                <img src="@/assets/images/chauffage_elec.svg" alt="Électrique" style="width: 45px; margin-right: 15px;" />
+                <span class="label-text">Électrique</span>
+            </label>
+            
+            <label class="custom-radio">
+                <input type="radio" value="gaz" v-model="formData.chauffage" />
+                <img src="@/assets/images/gaz.svg" alt="Gaz" style="width: 45px; margin-right: 15px;" />
+                <span class="label-text">Gaz</span>
+            </label>
+            
+            <label class="custom-radio">
+                <input type="radio" value="fioul" v-model="formData.chauffage" />
+                <img src="@/assets/images/fioul.svg" alt="Fioul" style="width: 45px; margin-right: 15px;" />
+                <span class="label-text">Fioul</span>
+            </label>
             </div>
 
             <button type="submit" class="btn-submit btn-orange">Enregistrer</button>

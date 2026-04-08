@@ -22,12 +22,15 @@ function logout() {
         <div class="pictogrammes">
         <router-link to="/home" class="nav-item">
             <img src="@/assets/images/accueil.svg" alt="maison" class="picto">
+            <span class="nav-text">{{ t('menu.home') }}</span>
         </router-link>
         <router-link to="/quiz" class="nav-item">
             <img src="@/assets/images/formulaire.svg" alt="maison" class="picto">
+            <span class="nav-text">{{ t('menu.form') }}</span>
         </router-link>
         <router-link to="/statistiques" class="nav-item">
             <img src="@/assets/images/statistiques.svg" alt="maison" class="picto">
+            <span class="nav-text">{{ t('menu.stats') }}</span>
         </router-link>
         </div>
 

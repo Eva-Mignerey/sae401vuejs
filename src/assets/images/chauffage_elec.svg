@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_6" data-name="Calque 6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1456">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #adadad;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        fill: #d8d8d8;
+      }
+
+      .cls-3 {
+        fill: #7e7f7a;
+      }
+
+      .cls-4 {
+        fill: #e8e803;
+      }
+    </style>
+  </defs>
+  <g>
+    <rect class="cls-3" x="275.09" y="486.29" width="121.75" height="112.51"/>
+    <path class="cls-1" d="M306.66,481.78v122.24c0,1.61-.74,3.06-1.89,4.02-.91.74-2.07,1.2-3.33,1.2s-2.42-.46-3.32-1.2c-1.15-.96-1.89-2.41-1.89-4.02v-122.24c0-2.87,2.34-5.21,5.21-5.21,1.43,0,2.74.59,3.69,1.53.94.94,1.53,2.24,1.53,3.68Z"/>
+    <rect class="cls-1" x="315.9" y="476.57" width="10.43" height="132.67" rx="5.22" ry="5.22"/>
+    <rect class="cls-1" x="335.58" y="476.57" width="10.43" height="132.67" rx="5.22" ry="5.22"/>
+    <rect class="cls-1" x="356.3" y="476.57" width="10.43" height="132.67" rx="5.22" ry="5.22"/>
+    <rect class="cls-1" x="377.02" y="475.37" width="10.43" height="132.67" rx="5.22" ry="5.22"/>
+    <rect class="cls-1" x="275.35" y="476.57" width="10.43" height="132.67" rx="5.22" ry="5.22"/>
+    <rect class="cls-2" x="396.84" y="476.57" width="47.4" height="132.67" rx="6.15" ry="6.15"/>
+    <path class="cls-1" d="M317.92,619.45h-32.13l6.86-11.41h5.47c.9.74,2.06,1.2,3.32,1.2s2.42-.46,3.33-1.2h7.11l6.04,11.41Z"/>
+    <polygon class="cls-1" points="402.99 609.24 396.47 620.86 430.09 620.86 422.34 609.24 402.99 609.24"/>
+    <rect class="cls-2" x="268.83" y="486.29" width="6.26" height="17.66" rx="3.13" ry="3.13"/>
+    <rect class="cls-2" x="268.83" y="580.15" width="6.26" height="17.66" rx="3.13" ry="3.13"/>
+    <rect class="cls-3" x="413.61" y="491.88" width="23.59" height="41.48" rx="3.69" ry="3.69"/>
+    <circle class="cls-3" cx="425.41" cy="549.96" r="7.77"/>
+  </g>
+  <polygon class="cls-4" points="428.76 497.79 417.14 515.01 424.44 515.01 421.76 527.45 433.68 510.24 426.01 510.31 428.76 497.79"/>
+</svg>

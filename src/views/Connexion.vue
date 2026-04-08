@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import TopBar from '@/components/TopBar.vue'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -20,11 +21,9 @@ const handleLogin = () => {
 </script>
 
 <template>
+    <TopBar :userName="userName" />
     <div class="login-page">
-        <header class="login-header">
-        <img src="@/assets/images/logo_collecte.svg" alt="Logo CO2llect" class="logo" />
-        <h1 v-html="t('loginPage.welcome_title')"></h1>
-        </header>
+        
 
         <div class="mascot-section">
         <img src="@/assets/images/mascotte_1.svg" alt="Mascotte" class="mascot" />

@@ -25,6 +25,11 @@ const results = ref({
         <section class="daily-survey">
             <h2>{{ t('home.daily') }}</h2>
             
+            <div class="survey-info">
+              <p>Bienvenue sur CO₂llect ! Ce questionnaire est à faire tous les jours pour suivre ta consommation de CO₂ en direct.</p>
+              <p>Mais pas de panique ! Si tu oublies de le remplir, les données renseignées lors de la création de ton compte nous aideront à faire une estimation de ta consommation journalière. Allez, à toi de jouer !</p>
+            </div>
+
             <router-link 
             to="/quiz" 
             class="btn-survey" 
