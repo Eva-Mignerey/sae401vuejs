@@ -8,6 +8,9 @@ import {
   CategoryScale, LinearScale, PointElement, Filler 
 } from 'chart.js'
 import fakeData from '../data/data.json'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 
 ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement, Filler)
@@ -40,12 +43,11 @@ const chartData = computed(() => {
       return dateObj.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' })
     }),
     datasets: [{
-      label: 'Score Carbone',
+      label: t('chart.carbon_score'),
       data: source.map(d => d.score),
       borderColor: '#F28435',
       borderWidth: 4,
       pointBackgroundColor: '#F28435',
-      // On cache les points sur l'année pour éviter l'effet "pâté"
       pointRadius: period.value === 'year' ? 0 : 3, 
       pointHitRadius: 10,
       backgroundColor: 'rgba(242, 132, 53, 0.1)',
@@ -105,45 +107,3 @@ const chartOptions = computed(() => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.container-graph {
-    background-color: white;
-    padding:20px;
-    border-radius:15px;
-  height: 350px;
-  margin-bottom: 25px;
-}
-
-.tabs {
-    background-color:rgb(214, 211, 211);
-  display: flex;
-  justify-content: center;
-  margin-bottom:40px;
-  padding:15px;
-  border-radius: 20px;
-}
-
-button {
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #F28435;
-    border: none;
-    color: white;
-    border-radius: 10px;
-    padding: 10px 20px;
-    margin-right: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    background-color: #d56b1e;
-    transform: translateY(-2px);
-}
-
-button.active {
-    background-color: #d56b1e;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
-}
-</style>

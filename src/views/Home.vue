@@ -82,26 +82,3 @@ const results = ref({
         </main>
     </div>
 </template>
-
-<style scoped>
-.survey-info {
-  background-color: white;
-  border: 1px solid #F08C4A;
-  border-radius: 12px;
-  padding: 15px;
-  margin-bottom: 20px;
-  font-size: 13px;
-  line-height: 1.5;
-  color: #333;
-}
-
-.survey-info p {
-  margin: 0 0 10px 0;
-}
-
-.survey-info p:last-child {
-  margin: 0;
-  font-weight: bold;
-  color: #F08C4A;
-}
-</style>

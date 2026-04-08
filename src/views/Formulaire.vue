@@ -207,34 +207,3 @@ const switchLang = (lang) => {
 
     </div>
 </template>
-
-<style scoped>
-.onboarding-page {
-  position: relative; /* Ajouté pour que le lang-switcher se positionne bien par rapport à la page */
-}
-
-.lang-switcher {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  gap: 8px;
-  z-index: 10;
-}
-
-.lang-switcher button {
-  background-color: transparent;
-  border: 2px solid #7CB342;
-  color: #7CB342;
-  border-radius: 8px;
-  padding: 5px 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.lang-switcher button.active {
-  background-color: #7CB342;
-  color: white;
-}
-</style>

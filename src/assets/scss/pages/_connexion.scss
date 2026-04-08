@@ -7,7 +7,37 @@
     font-family: $police;
     color: $texte-basique;
     padding: 20px;
-}
+
+
+  .lang-switcher {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+
+    button {
+      @include bouton-vert;
+      padding: 8px 12px;
+      font-size: $texte-petit;
+      opacity: 0.6;
+
+      &:hover {
+        transform: scale(0.98);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+
+      &.active {
+        opacity: 1;
+        background-color: $vert;
+        color: $blanc;
+      }
+    }
+  }
 
 .logo {
     @include logo;
@@ -123,4 +153,5 @@
         color: $orange;
         }
     }
+}
 }
