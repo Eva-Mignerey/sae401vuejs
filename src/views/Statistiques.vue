@@ -6,9 +6,10 @@ import CarbonChart from '../components/Graphic.vue'
 
 const { t } = useI18n()
 const userName = ref('David')
+
+// Attention : cette variable contrôle les chiffres en bas (Total, Moyenne).
+// Pour l'instant elle est fixe sur 'mois'.
 const activePeriod = ref('mois')
-
-
 
 const mockData = {
   semaine: [12, 15, 9, 20, 14, 18, 10],
@@ -18,20 +19,6 @@ const mockData = {
 
 const currentData = computed(() => mockData[activePeriod.value])
 
-const maxVal = computed(() => Math.max(...currentData.value) * 1.2)
-
-const points = computed(() => {
-  return currentData.value.map((val, index) => {
-    const x = (index / (currentData.value.length - 1)) * 100
-    const y = 100 - ((val / maxVal.value) * 100)
-    return { x, y, val }
-  })
-})
-
-const polylinePoints = computed(() => {
-  return points.value.map(p => `${p.x},${p.y}`).join(' ')
-})
-
 const periodLabel = computed(() => {
   if (activePeriod.value === 'semaine') return t('stats.of_week')
   if (activePeriod.value === 'mois') return t('stats.of_month')
@@ -39,21 +26,20 @@ const periodLabel = computed(() => {
 })
 
 const totalCO2 = computed(() => currentData.value.reduce((a, b) => a + b, 0))
-
-
 </script>
 
 <template>
-    <TopBar :userName="userName" />
+  <TopBar :userName="userName" />
   <div class="stats-page">
 
     <main class="main-content">
-      <h2 class="page-title">Ton bilan {{ period }}</h2>
+      <h2 class="page-title">{{ t('stats.title', { period: periodLabel }) }}</h2>
 
       <div class="stats-container">
+        
         <div class="card shadow">
-        <CarbonChart />
-      </div>
+          <CarbonChart />
+        </div>
 
         <div class="extra-stats-grid">
           <div class="stat-box">

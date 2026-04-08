@@ -1,4 +1,6 @@
 <script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 import { ref, computed } from 'vue'
 import { Line } from 'vue-chartjs'
 import { 
@@ -93,9 +95,9 @@ const chartOptions = computed(() => {
 
 <template>
     <div class="tabs">
-      <button @click="period = 'week'" :class="{ active: period === 'week' }">Semaine</button>
-      <button @click="period = 'month'" :class="{ active: period === 'month' }">Mois</button>
-      <button @click="period = 'year'" :class="{ active: period === 'year' }">Année</button>
+      <button @click="period = 'week'" :class="{ active: period === 'week' }">{{ t('stats.week') }}</button>
+      <button @click="period = 'month'" :class="{ active: period === 'month' }">{{ t('stats.month') }}</button>
+      <button @click="period = 'year'" :class="{ active: period === 'year' }">{{ t('stats.year') }}</button>
     </div>
   <div class="chart-wrapper">
     <div class="container-graph">
