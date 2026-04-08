@@ -163,6 +163,13 @@ export default {
     average: "Average",
     kg_per_day: "kg/d",
     car_equivalent: "Car Equivalent",
-    km_driven: "km driven 🚗"
-  }
+    km_driven: "km driven"
+  },
+
+    chart: {
+    week: 'Week',
+    month: 'Month',
+    year: 'Year',
+    carbon_score: 'Carbon Score'
+    }
 }

@@ -48,7 +48,8 @@ const totalCO2 = computed(() => currentData.value.reduce((a, b) => a + b, 0))
   <div class="stats-page">
 
     <main class="main-content">
-      <h2 class="page-title">Ton bilan {{ period }}</h2>
+      <h2 class="page-title">
+        {{ t('stats.title') }}</h2>
 
       <div class="stats-container">
         <div class="card shadow">
