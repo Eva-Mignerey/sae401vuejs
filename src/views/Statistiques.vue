@@ -1,7 +1,9 @@
 <script setup>
 import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import TopBar from '@/components/TopBar.vue'
 
+const { t } = useI18n()
 const userName = ref('David')
 const activePeriod = ref('mois')
 
@@ -28,9 +30,9 @@ const polylinePoints = computed(() => {
 })
 
 const periodLabel = computed(() => {
-  if (activePeriod.value === 'semaine') return 'de la semaine'
-  if (activePeriod.value === 'mois') return 'du mois'
-  return "de l'année"
+  if (activePeriod.value === 'semaine') return t('stats.of_week')
+  if (activePeriod.value === 'mois') return t('stats.of_month')
+  return t('stats.of_year')
 })
 
 const totalCO2 = computed(() => currentData.value.reduce((a, b) => a + b, 0))
@@ -41,17 +43,17 @@ const totalCO2 = computed(() => currentData.value.reduce((a, b) => a + b, 0))
   <div class="stats-page">
 
     <main class="main-content">
-      <h2 class="page-title">Ton bilan {{ periodLabel }}</h2>
+      <h2 class="page-title">{{ t('stats.title', { period: periodLabel }) }}</h2>
 
       <div class="stats-container">
         <div class="period-selector">
-          <button :class="{ active: activePeriod === 'semaine' }" @click="activePeriod = 'semaine'">Semaine</button>
-          <button :class="{ active: activePeriod === 'mois' }" @click="activePeriod = 'mois'">Mois</button>
-          <button :class="{ active: activePeriod === 'annee' }" @click="activePeriod = 'annee'">Année</button>
+          <button :class="{ active: activePeriod === 'semaine' }" @click="activePeriod = 'semaine'">{{ t('stats.week') }}</button>
+          <button :class="{ active: activePeriod === 'mois' }" @click="activePeriod = 'mois'">{{ t('stats.month') }}</button>
+          <button :class="{ active: activePeriod === 'annee' }" @click="activePeriod = 'annee'">{{ t('stats.year') }}</button>
         </div>
 
         <div class="chart-card">
-          <p class="chart-subtitle">Graphique {{ activePeriod }}</p>
+          <p class="chart-subtitle">{{ t('stats.chart_subtitle', { period: t(`stats.period_${activePeriod}`) }) }}</p>
           
           <div class="svg-container">
             <svg viewBox="-5 -5 110 110" class="line-chart">
@@ -64,16 +66,16 @@ const totalCO2 = computed(() => currentData.value.reduce((a, b) => a + b, 0))
 
         <div class="extra-stats-grid">
           <div class="stat-box">
-            <h3>Total émis</h3>
-            <p class="stat-value">{{ totalCO2 }} <span>kg CO₂</span></p>
+            <h3>{{ t('stats.total_emitted') }}</h3>
+            <p class="stat-value">{{ totalCO2 }} <span>{{ t('stats.kg_co2') }}</span></p>
           </div>
           <div class="stat-box">
-            <h3>Moyenne</h3>
-            <p class="stat-value">{{ Math.round(totalCO2 / currentData.length) }} <span>kg/j</span></p>
+            <h3>{{ t('stats.average') }}</h3>
+            <p class="stat-value">{{ Math.round(totalCO2 / currentData.length) }} <span>{{ t('stats.kg_per_day') }}</span></p>
           </div>
           <div class="stat-box full-width">
-            <h3>Équivalent Voiture</h3>
-            <p class="stat-value">{{ Math.round(totalCO2 * 4.5) }} <span>km parcourus 🚗</span></p>
+            <h3>{{ t('stats.car_equivalent') }}</h3>
+            <p class="stat-value">{{ Math.round(totalCO2 * 4.5) }} <span>{{ t('stats.km_driven') }}</span></p>
           </div>
         </div>
       </div>
@@ -84,4 +86,3 @@ const totalCO2 = computed(() => currentData.value.reduce((a, b) => a + b, 0))
     </main>
   </div>
 </template>
-

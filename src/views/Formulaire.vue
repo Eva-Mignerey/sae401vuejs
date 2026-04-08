@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import TopBar from '@/components/TopBar.vue'
+import { useI18n } from 'vue-i18n'
 
+// On ajoute 'locale' ici
+const { t, locale } = useI18n()
 const router = useRouter()
 
 const currentStep = ref(1)
@@ -22,11 +24,11 @@ const formData = ref({
 
 const handleCreateAccount = () => {
   if (formData.value.password !== formData.value.confirmPassword) {
-    alert("Les mots de passe ne correspondent pas !")
+    alert(t('onboarding.error_password'))
     return
   }
   if (!formData.value.cguAccepted) {
-    alert("Tu dois accepter la politique de confidentialité.")
+    alert(t('onboarding.error_cgu'))
     return
   }
   currentStep.value = 2
@@ -34,18 +36,27 @@ const handleCreateAccount = () => {
 
 const handleSaveHabits = () => {
   if (formData.value.transports.length === 0 || !formData.value.regime || !formData.value.achats || !formData.value.chauffage) {
-    alert("Veuillez sélectionner au moins une option pour chaque question.")
+    alert(t('onboarding.error_empty'))
     return
   }
   localStorage.setItem('token', 'faux-token-demo-8h')
   router.push({ name: 'home' })
 }
+
+// Fonction pour changer la langue
+const switchLang = (lang) => {
+    locale.value = lang
+}
 </script>
 
 <template>
-    <TopBar :userName="userName" />
     <div class="onboarding-page">
         
+        <div class="lang-switcher">
+            <button :class="{ active: locale === 'fr' }" @click="switchLang('fr')">FR</button>
+            <button :class="{ active: locale === 'en' }" @click="switchLang('en')">EN</button>
+        </div>
+
         <div class="progress-header">
         <div class="mascot-container">
             <img src="@/assets/images/mascotte_1.svg" alt="Mascotte" class="mascot-progress" />
@@ -63,136 +74,167 @@ const handleSaveHabits = () => {
         <form @submit.prevent="handleCreateAccount" class="register-form">
             
             <div class="form-group">
-            <label for="prenom">Prénom</label>
-            <input type="text" id="prenom" v-model="formData.prenom" placeholder="Tape ton prénom ici..." required />
+            <label for="prenom">{{ t('onboarding.firstname') }}</label>
+            <input type="text" id="prenom" v-model="formData.prenom" :placeholder="t('onboarding.firstname_placeholder')" required />
             </div>
 
             <div class="form-group">
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" v-model="formData.nom" placeholder="Tape ton nom ici..." required />
+            <label for="nom">{{ t('onboarding.lastname') }}</label>
+            <input type="text" id="nom" v-model="formData.nom" :placeholder="t('onboarding.lastname_placeholder')" required />
             </div>
 
             <div class="form-group">
-            <label for="email">Adresse mail</label>
-            <input type="email" id="email" v-model="formData.email" placeholder="Tape ton adresse mail ici..." required />
+            <label for="email">{{ t('onboarding.email') }}</label>
+            <input type="email" id="email" v-model="formData.email" :placeholder="t('onboarding.email_placeholder')" required />
             </div>
 
             <div class="form-group">
-            <label for="password">Mot de passe</label>
-            <input type="password" id="password" v-model="formData.password" placeholder="Tape ton mot de passe ici..." required />
+            <label for="password">{{ t('onboarding.password') }}</label>
+            <input type="password" id="password" v-model="formData.password" :placeholder="t('onboarding.password_placeholder')" required />
             </div>
 
             <div class="form-group">
-            <label for="confirmPassword">Confirmer le mot de passe</label>
-            <input type="password" id="confirmPassword" v-model="formData.confirmPassword" placeholder="Tape ton mot de passe ici..." required />
+            <label for="confirmPassword">{{ t('onboarding.confirm_password') }}</label>
+            <input type="password" id="confirmPassword" v-model="formData.confirmPassword" :placeholder="t('onboarding.password_placeholder')" required />
             </div>
 
             <div class="form-checkbox">
             <input type="checkbox" id="cgu" v-model="formData.cguAccepted" required />
-            <label for="cgu">J'accepte la politique de confidentialité</label>
+            <label for="cgu">{{ t('onboarding.cgu') }}</label>
             </div>
 
-            <button type="submit" class="btn-submit">Créer mon compte</button>
+            <button type="submit" class="btn-submit">{{ t('onboarding.submit_btn1') }}</button>
         </form>
         </div>
 
         <div v-if="currentStep === 2" class="step-2-container">
         
         <div class="welcome-banner">
-            <h2>Bienvenue, <strong>{{ formData.prenom || 'user_name' }}</strong> !</h2>
+            <h2 v-html="t('onboarding.welcome', { name: formData.prenom || 'user_name' })"></h2>
             <div class="speech-bubble">
-            <p>Pour bien utiliser l'app, tu dois d'abord renseigner tes habitudes de transports, consommations, etc... À toi de jouer !</p>
+            <p>{{ t('onboarding.speech') }}</p>
             </div>
         </div>
 
         <form @submit.prevent="handleSaveHabits" class="habits-form">
             
             <div class="question-block">
-            <h3>Quels moyens de transport utilises-tu ?<br><small>(Tu peux en choisir plusieurs)</small></h3>
+            <h3 v-html="t('onboarding.q1_title')"></h3>
             
             <label class="custom-checkbox">
                 <input type="checkbox" value="commun" v-model="formData.transports" />
-                <span class="label-text"><strong>Transports en commun</strong> (trains, bus, blablacar)</span>
+                <span class="label-text" v-html="t('onboarding.q1_opt1')"></span>
             </label>
             
             <label class="custom-checkbox">
                 <input type="checkbox" value="motorise" v-model="formData.transports" />
-                <span class="label-text"><strong>Véhicules motorisés</strong> (voitures, motos)</span>
+                <span class="label-text" v-html="t('onboarding.q1_opt2')"></span>
             </label>
             
             <label class="custom-checkbox">
                 <input type="checkbox" value="vert" v-model="formData.transports" />
-                <span class="label-text"><strong>Véhicules verts</strong> (vélos, trottinette, à pieds)</span>
+                <span class="label-text" v-html="t('onboarding.q1_opt3')"></span>
             </label>
             </div>
 
             <div class="question-block">
-            <h3>Quel est ton régime alimentaire ?</h3>
+            <h3>{{ t('onboarding.q2_title') }}</h3>
             
             <label class="custom-radio">
                 <input type="radio" value="viande_tous_repas" v-model="formData.regime" required />
                 <img src="@/assets/images/viande.svg" alt="Viande" style="width: 45px; margin-right: 15px;" />
-                <span class="label-text">Viande presque tous les repas</span>
+                <span class="label-text">{{ t('onboarding.q2_opt1') }}</span>
             </label>
             
             <label class="custom-radio">
                 <input type="radio" value="viande_regulier" v-model="formData.regime" />
                 <img src="@/assets/images/viande_2.svg" alt="Viande régulièrement" style="width: 45px; margin-right: 15px;" />
-                <span class="label-text"><strong>Viande régulièrement</strong> (viande 4-5 fois/semaine)</span>
+                <span class="label-text" v-html="t('onboarding.q2_opt2')"></span>
             </label>
             
             <label class="custom-radio">
                 <input type="radio" value="viande_peu" v-model="formData.regime" />
                 <img src="@/assets/images/viande_3.svg" alt="Peu de viande" style="width: 45px; margin-right: 15px;" />
-                <span class="label-text"><strong>Peu de viande</strong> (viande 1-2 fois/semaine)</span>
+                <span class="label-text" v-html="t('onboarding.q2_opt3')"></span>
             </label>
 
             <label class="custom-radio">
                 <input type="radio" value="vegetarien" v-model="formData.regime" />
                 <img src="@/assets/images/viande_4.svg" alt="Végétarien" style="width: 45px; margin-right: 15px;" />
-                <span class="label-text"><strong>Végétarien/Vegan</strong></span>
+                <span class="label-text" v-html="t('onboarding.q2_opt4')"></span>
             </label>
             </div>
 
             <div class="question-block">
-            <h3>À quelle fréquence achètes-tu des produits neufs ?<br><small>(vêtement, technologie...)</small></h3>
-            <label class="custom-radio"><input type="radio" value="tres_rarement" v-model="formData.achats" required /> <span class="label-text">Très rarement</span></label>
-            <label class="custom-radio"><input type="radio" value="occasionnellement" v-model="formData.achats" /> <span class="label-text">Occasionnellement</span></label>
-            <label class="custom-radio"><input type="radio" value="souvent" v-model="formData.achats" /> <span class="label-text">Souvent</span></label>
-            <label class="custom-radio"><input type="radio" value="tres_souvent" v-model="formData.achats" /> <span class="label-text">Très souvent</span></label>
+            <h3 v-html="t('onboarding.q3_title')"></h3>
+            <label class="custom-radio"><input type="radio" value="tres_rarement" v-model="formData.achats" required /> <span class="label-text">{{ t('onboarding.q3_opt1') }}</span></label>
+            <label class="custom-radio"><input type="radio" value="occasionnellement" v-model="formData.achats" /> <span class="label-text">{{ t('onboarding.q3_opt2') }}</span></label>
+            <label class="custom-radio"><input type="radio" value="souvent" v-model="formData.achats" /> <span class="label-text">{{ t('onboarding.q3_opt3') }}</span></label>
+            <label class="custom-radio"><input type="radio" value="tres_souvent" v-model="formData.achats" /> <span class="label-text">{{ t('onboarding.q3_opt4') }}</span></label>
             </div>
 
             <div class="question-block">
-            <h3>Quel type de chauffage utilises-tu dans ton logement ?</h3>
+            <h3>{{ t('onboarding.q4_title') }}</h3>
             
             <label class="custom-radio">
                 <input type="radio" value="renouvelable" v-model="formData.chauffage" required />
                 <img src="@/assets/images/cheminee.svg" alt="Cheminée" style="width: 45px; margin-right: 15px;" />
-                <span class="label-text">Énergies renouvelables / bois</span>
+                <span class="label-text">{{ t('onboarding.q4_opt1') }}</span>
             </label>
             
             <label class="custom-radio">
                 <input type="radio" value="electrique" v-model="formData.chauffage" />
                 <img src="@/assets/images/chauffage_elec.svg" alt="Électrique" style="width: 45px; margin-right: 15px;" />
-                <span class="label-text">Électrique</span>
+                <span class="label-text">{{ t('onboarding.q4_opt2') }}</span>
             </label>
             
             <label class="custom-radio">
                 <input type="radio" value="gaz" v-model="formData.chauffage" />
                 <img src="@/assets/images/gaz.svg" alt="Gaz" style="width: 45px; margin-right: 15px;" />
-                <span class="label-text">Gaz</span>
+                <span class="label-text">{{ t('onboarding.q4_opt3') }}</span>
             </label>
             
             <label class="custom-radio">
                 <input type="radio" value="fioul" v-model="formData.chauffage" />
                 <img src="@/assets/images/fioul.svg" alt="Fioul" style="width: 45px; margin-right: 15px;" />
-                <span class="label-text">Fioul</span>
+                <span class="label-text">{{ t('onboarding.q4_opt4') }}</span>
             </label>
             </div>
 
-            <button type="submit" class="btn-submit btn-orange">Enregistrer</button>
+            <button type="submit" class="btn-submit btn-orange">{{ t('onboarding.submit_btn2') }}</button>
         </form>
         </div>
 
     </div>
 </template>
+
+<style scoped>
+.onboarding-page {
+  position: relative; /* Ajouté pour que le lang-switcher se positionne bien par rapport à la page */
+}
+
+.lang-switcher {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.lang-switcher button {
+  background-color: transparent;
+  border: 2px solid #7CB342;
+  color: #7CB342;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.lang-switcher button.active {
+  background-color: #7CB342;
+  color: white;
+}
+</style>
