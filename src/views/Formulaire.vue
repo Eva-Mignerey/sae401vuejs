@@ -58,9 +58,7 @@ const switchLang = (lang) => {
         </div>
 
         <div class="progress-header">
-        <div class="mascot-container">
             <img src="@/assets/images/mascotte_1.svg" alt="Mascotte" class="mascot-progress" />
-        </div>
         <div class="stepper">
             <div class="step" :class="{ active: currentStep >= 1 }">1</div>
             <div class="line"></div>
@@ -123,16 +121,19 @@ const switchLang = (lang) => {
             
             <label class="custom-checkbox">
                 <input type="checkbox" value="commun" v-model="formData.transports" />
+                <img src="@/assets/images/train.svg" alt="Train" />
                 <span class="label-text" v-html="t('onboarding.q1_opt1')"></span>
             </label>
             
             <label class="custom-checkbox">
                 <input type="checkbox" value="motorise" v-model="formData.transports" />
+                <img src="@/assets/images/voiture.svg" alt="Voiture" />
                 <span class="label-text" v-html="t('onboarding.q1_opt2')"></span>
             </label>
             
             <label class="custom-checkbox">
                 <input type="checkbox" value="vert" v-model="formData.transports" />
+                <img src="@/assets/images/velo.svg" alt="Vélo" />
                 <span class="label-text" v-html="t('onboarding.q1_opt3')"></span>
             </label>
             </div>
@@ -142,25 +143,25 @@ const switchLang = (lang) => {
             
             <label class="custom-radio">
                 <input type="radio" value="viande_tous_repas" v-model="formData.regime" required />
-                <img src="@/assets/images/viande.svg" alt="Viande" style="width: 45px; margin-right: 15px;" />
+                <img src="@/assets/images/viande.svg" alt="Viande" />
                 <span class="label-text">{{ t('onboarding.q2_opt1') }}</span>
             </label>
             
             <label class="custom-radio">
                 <input type="radio" value="viande_regulier" v-model="formData.regime" />
-                <img src="@/assets/images/viande_2.svg" alt="Viande régulièrement" style="width: 45px; margin-right: 15px;" />
+                <img src="@/assets/images/viande_2.svg" alt="Viande régulièrement" />
                 <span class="label-text" v-html="t('onboarding.q2_opt2')"></span>
             </label>
             
             <label class="custom-radio">
                 <input type="radio" value="viande_peu" v-model="formData.regime" />
-                <img src="@/assets/images/viande_3.svg" alt="Peu de viande" style="width: 45px; margin-right: 15px;" />
+                <img src="@/assets/images/viande_3.svg" alt="Peu de viande" />
                 <span class="label-text" v-html="t('onboarding.q2_opt3')"></span>
             </label>
 
             <label class="custom-radio">
                 <input type="radio" value="vegetarien" v-model="formData.regime" />
-                <img src="@/assets/images/viande_4.svg" alt="Végétarien" style="width: 45px; margin-right: 15px;" />
+                <img src="@/assets/images/viande_4.svg" alt="Végétarien" />
                 <span class="label-text" v-html="t('onboarding.q2_opt4')"></span>
             </label>
             </div>
@@ -178,25 +179,25 @@ const switchLang = (lang) => {
             
             <label class="custom-radio">
                 <input type="radio" value="renouvelable" v-model="formData.chauffage" required />
-                <img src="@/assets/images/cheminee.svg" alt="Cheminée" style="width: 45px; margin-right: 15px;" />
+                <img src="@/assets/images/cheminee.svg" alt="Cheminée" />
                 <span class="label-text">{{ t('onboarding.q4_opt1') }}</span>
             </label>
             
             <label class="custom-radio">
                 <input type="radio" value="electrique" v-model="formData.chauffage" />
-                <img src="@/assets/images/chauffage_elec.svg" alt="Électrique" style="width: 45px; margin-right: 15px;" />
+                <img src="@/assets/images/chauffage_elec.svg" alt="Électrique" />
                 <span class="label-text">{{ t('onboarding.q4_opt2') }}</span>
             </label>
             
             <label class="custom-radio">
                 <input type="radio" value="gaz" v-model="formData.chauffage" />
-                <img src="@/assets/images/gaz.svg" alt="Gaz" style="width: 45px; margin-right: 15px;" />
+                <img src="@/assets/images/gaz.svg" alt="Gaz" />
                 <span class="label-text">{{ t('onboarding.q4_opt3') }}</span>
             </label>
             
             <label class="custom-radio">
                 <input type="radio" value="fioul" v-model="formData.chauffage" />
-                <img src="@/assets/images/fioul.svg" alt="Fioul" style="width: 45px; margin-right: 15px;" />
+                <img src="@/assets/images/fioul.svg" alt="Fioul" />
                 <span class="label-text">{{ t('onboarding.q4_opt4') }}</span>
             </label>
             </div>

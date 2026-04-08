@@ -161,3 +161,40 @@ $bouton: 1.4rem;
         text-decoration: underline;
     }
 }
+
+//cases formulaire
+
+@mixin choice-box($height: 72px, $img-size: 100px) {
+    display: flex;
+    align-items: center;
+    height: $height; 
+    overflow: hidden; 
+
+    background-color: $blanc;
+    border: 1px solid $orange;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+
+    input {
+        margin-right: 15px;
+        width: 18px;
+        height: 18px;
+        accent-color: $orange;
+        flex-shrink: 0;
+    }
+
+    img {
+        width: $img-size;
+        height: $img-size; 
+        object-fit: contain;
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+
+    &:has(input:checked) {
+        background-color: lighten($orange, 35%);
+    }
+}
