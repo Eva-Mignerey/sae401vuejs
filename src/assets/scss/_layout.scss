@@ -8,7 +8,7 @@ $text-color: #472E0B;
 $gris: #333333;
 $blanc: #FFFFFF;
 $noir: #000000;
-$remplissage: rgba(#F2B55B, 0.25);
+$remplissage: lighten($orange, 35%);
 
 // texte
 $police: 'inter', sans-serif;
@@ -175,6 +175,6 @@ $bouton: 1.4rem;
     }
 
     &:has(input:checked) {
-        background-color: lighten($orange, 35%);
+        background-color: $remplissage;
     }
 }

@@ -30,7 +30,7 @@
   }
 
   &:has(input:checked) {
-    background-color: lighten($orange, 35%);
+    background-color: $remplissage;
   }
 }
 
@@ -107,7 +107,7 @@
 
   .step-1-container {
     .register-form {
-      background-color: lighten($orange, 35%);
+      background-color: $remplissage;
       border: 1px solid $orange;
       border-radius: 15px;
       padding: 25px 20px;
