@@ -1,0 +1,20 @@
+// layout
+@import "layout";
+
+// pages
+@import "pages/home";
+@import "pages/formulaire";
+@import "pages/connexion";
+@import "pages/questionnaire";
+@import "pages/stats";
+
+// composants
+@import "composants/header.scss";
+@import "composants/topbar.scss";
+@import "composants/graphic.scss";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

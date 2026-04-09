@@ -1,0 +1,27 @@
+.container-graph {
+    background-color: $blanc;
+    color: $text-color;
+    padding:20px;
+    border-radius:15px;
+    height: 350px;
+    margin-bottom: 25px;
+}
+
+.tabs {
+    background-color: lighten($vert, 20%);
+    display: flex;
+    justify-content: center;
+    margin-bottom:40px;
+    padding:15px;
+    border-radius: 20px;
+}
+
+button {
+    @include bouton-orange-petit;
+    border: none;
+    margin-right: 15px;
+}
+
+button.active {
+    background-color: darken($orange, 10%);
+}

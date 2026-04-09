@@ -1,0 +1,243 @@
+.onboarding-page {
+  position: relative;
+  font-family: $police;
+  background-color: $background-color;
+  padding: 20px 16px 80px 16px;
+
+  .lang-switcher {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+
+    button {
+      @include bouton-vert;
+      padding: 8px 12px;
+      font-size: $texte-petit;
+      opacity: 0.6;
+
+      &:hover {
+        transform: scale(0.98);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+
+      &.active {
+        opacity: 1;
+        background-color: $vert;
+        color: $blanc;
+      }
+    }
+  }
+
+  .progress-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    padding-top: 20px;
+  }
+
+  .mascot-container {
+    margin-right: 15px;
+  }
+
+  .mascot-progress {
+    width: 60px;
+  }
+
+  .stepper {
+    display: flex;
+    align-items: center;
+
+    .step {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: #E0E0E0;
+      color: $blanc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: $texte-basique;
+
+      &.active {
+        background-color: $orange;
+      }
+    }
+
+    .line {
+      width: 30px;
+      height: 2px;
+      background-color: #E0E0E0;
+    }
+  }
+
+  .step-1-container {
+    .register-form {
+      background-color: transparent;
+      border: 1px solid $orange;
+      border-radius: 15px;
+      padding: 25px 20px;
+      max-width: 400px;
+      width: 100%;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-weight: 900;
+      margin-bottom: 5px;
+      font-size: $texte-petit;
+    }
+
+    input {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: $texte-basique;
+      box-sizing: border-box;
+    }
+  }
+
+  .form-checkbox {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+
+    input {
+      margin-right: 10px;
+      width: 18px;
+      height: 18px;
+    }
+
+    label {
+      font-size: $texte-petit;
+      font-weight: bold;
+    }
+  }
+
+  .btn-submit {
+    @include bouton-vert;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: $texte-basique;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+  }
+
+  .btn-orange {
+    @include bouton-orange;
+  }
+
+  .welcome-banner {
+    text-align: center;
+    margin-bottom: 30px;
+
+    h2 {
+      color: $text-color;
+      font-size: $texte-basique;
+    }
+  }
+
+  .speech-bubble {
+    background-color: $orange;
+    color: $blanc;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: $texte-petit;
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      border-width: 0 10px 10px 10px;
+      border-style: solid;
+      border-color: transparent transparent $orange transparent;
+    }
+  }
+
+  .habits-form {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .question-block {
+    margin-bottom: 30px;
+
+    h3 {
+      font-size: $texte-basique;
+      color: $noir;
+      margin-bottom: 15px;
+      text-align: center;
+
+      small {
+        font-weight: normal;
+        font-size: $texte-petit;
+        color: #666;
+      }
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      border: 1px solid $orange;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 10px;
+      cursor: pointer;
+
+      &:has(input:checked) {
+        background-color: lighten($orange, 35%);
+      }
+    }
+  }
+
+  .custom-checkbox,
+  .custom-radio {
+    display: flex;
+    align-items: center;
+    background-color: $blanc;
+    border: 1px solid $orange;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+
+    input {
+      margin-right: 15px;
+      width: 18px;
+      height: 18px;
+      accent-color: $orange;
+    }
+
+    &:has(input:checked) {
+      background-color: lighten($orange, 35%);
+    }
+  }
+
+  .label-text {
+    font-size: $texte-basique;
+  }
+}
