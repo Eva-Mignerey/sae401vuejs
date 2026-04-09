@@ -58,7 +58,7 @@ const switchLang = (lang) => {
         </div>
 
         <div class="progress-header">
-            <img src="@/assets/images/mascotte_1.svg" alt="Mascotte" class="mascot-progress" />
+            <img src="@/assets/images/mascotte_assise.svg" alt="Mascotte" class="mascot-progress" />
         <div class="stepper">
             <div class="step" :class="{ active: currentStep >= 1 }">1</div>
             <div class="line"></div>
