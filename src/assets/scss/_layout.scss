@@ -163,13 +163,10 @@ $bouton: 1.4rem;
 }
 
 //cases formulaire
-
-@mixin choice-box($height: 72px, $img-size: 100px) {
+@mixin choice-box($height: 72px, $img-size: 40px) {
     display: flex;
     align-items: center;
-    height: $height; 
-    overflow: hidden; 
-
+    height: $height;
     background-color: $blanc;
     border: 1px solid $orange;
     border-radius: 10px;
@@ -188,7 +185,7 @@ $bouton: 1.4rem;
 
     img {
         width: $img-size;
-        height: $img-size; 
+        height: $img-size;
         object-fit: contain;
         margin-right: 15px;
         flex-shrink: 0;
