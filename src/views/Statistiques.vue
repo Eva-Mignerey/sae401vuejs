@@ -58,7 +58,7 @@ const totalCO2 = computed(() => currentData.value.reduce((a, b) => a + b, 0))
       </div>
 
       <div class="mascot-container">
-        <img src="@/assets/images/mascotte_1.svg" alt="Mascotte" class="mascot" />
+        <img src="@/assets/images/mascotte_heureuse.svg" alt="Mascotte" class="mascot" />
       </div>
     </main>
   </div>

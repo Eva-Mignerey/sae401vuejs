@@ -8,9 +8,6 @@ import {
   CategoryScale, LinearScale, PointElement, Filler 
 } from 'chart.js'
 import fakeData from '../data/data.json'
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n()
 
 
 ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement, Filler)
