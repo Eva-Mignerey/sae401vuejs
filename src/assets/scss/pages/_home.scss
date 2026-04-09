@@ -90,7 +90,7 @@
     }
 
     .mascot-img {
-    width: 80px;
+    @include mascotte;
     }
 
     .score-box {

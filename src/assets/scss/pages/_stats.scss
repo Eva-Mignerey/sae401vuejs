@@ -114,7 +114,7 @@
 }
 
 .mascot {
-  width: 80px;
+  @include mascotte;
 }
 
 @media (min-width: 768px) {
@@ -240,7 +240,7 @@
 }
 
 .mascot {
-  width: 80px;
+  @include mascotte;
 }
 
 @media (min-width: 768px) {

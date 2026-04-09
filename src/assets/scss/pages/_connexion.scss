@@ -89,7 +89,7 @@
 }
 
 .mascot {
-    width: 90px;
+    @include mascotte;
 }
 
 .login-card {

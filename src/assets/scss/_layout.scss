@@ -28,25 +28,8 @@ $bouton: 1.4rem;
 }
 
 // mascottes
-@mixin mascotte_1 {
-    width: 90px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-
-@mixin mascotte_heureuse {
-    width: 175px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-
-@mixin mascotte_assise {
-    width: 175px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
+@mixin mascotte {
+    width: 80px;
 }
 
 //boutons
